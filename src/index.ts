@@ -24,8 +24,6 @@ io.on('connection', (socket) => {
         });
     });
 
-    socket.on('disconnect', () => {
-    });
 });
 
 server.listen(PORT, () => console.log(`SERVER RUNNING ON PORT ${PORT}`));
