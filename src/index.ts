@@ -9,7 +9,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new SocketServer(server, {
     cors: {
-        origin: 'https://chateemos.netlify.app',
+        origin: 'https://chateemos.netlify.app/',
     },
 });
 
