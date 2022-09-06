@@ -11,7 +11,7 @@ const io = new SocketServer(server, {
     cors: {
         origin: [
             'https://chateemos.netlify.app',
-            'http://localhost:5173'
+            'http://localhost:3000'
         ]
     },
 });
@@ -20,8 +20,14 @@ app.use(morgan('dev'));
 app.use(cors());
 
 io.on('connection', (socket) => {
+    const id = socket.id;
+    const room = socket.handshake.query.room || 'random';
+    socket.join(room);
+
+    console.log(`usuario ${id} conectado a la sala ${room}`);
+
     socket.on('chat message', (msg) => {
-        io.emit('chat message', {
+        io.to(room).emit('chat message', {
             user: msg.user,
             msg: msg.msg,
         });
